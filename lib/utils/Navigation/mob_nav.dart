@@ -8,14 +8,14 @@ import 'package:fms_web/Screens/ship/ship_page.dart';
 import 'package:fms_web/constants/primary.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
-class BottomPage extends StatefulWidget {
-  const BottomPage({Key? key});
+class mob_Nav extends StatefulWidget {
+  const mob_Nav({Key? key});
 
   @override
-  State<BottomPage> createState() => _BottomPageState();
+  State<mob_Nav> createState() => _mob_NavState();
 }
 
-class _BottomPageState extends State<BottomPage> {
+class _mob_NavState extends State<mob_Nav> {
   int _selectedIndex = 0;
   PageController controller = PageController();
   List<Widget> _pages = [
@@ -35,19 +35,13 @@ void _onTabTapped(int index) {
 
   
 
-
-
   @override
   
   Widget build(BuildContext context) {
-    bool isDesktop = MediaQuery.of(context).size.width > 600;
      final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-    double mobtxt =9;
-    double destxt=14;
-    double dexicon=32;
-    double mobicon=22;
-    print("width :  $width");
+    // final width = MediaQuery.of(context).size.width;
+ double iconsize=15;
+    double textsiz=8;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -56,11 +50,10 @@ void _onTabTapped(int index) {
           children: [
             _pages[_selectedIndex], // Your main content
             Align(
-           alignment: isDesktop? Alignment.topCenter:Alignment.bottomCenter,
+           alignment: Alignment.bottomCenter,
            
               child: Padding(
-                padding: isDesktop? EdgeInsets.only(
-                  top: 20):EdgeInsets.only(
+                padding: EdgeInsets.only(
                   bottom: 20),
                 child: ClipRRect(
                       borderRadius: BorderRadius.all(
@@ -70,15 +63,10 @@ void _onTabTapped(int index) {
                     decoration: BoxDecoration(
                   color: Colors.white, // Customize the background color
                       borderRadius: BorderRadius.circular(20)),
-                    height:isDesktop? 55:45, 
-                    width:isDesktop? 900:800,// Adjust the height of the navigation bar
+                    height:43, 
+                    width:600,// Adjust the height of the navigation bar
                     child: StylishBottomBar(
-                      option:isDesktop? BubbleBarOptions(
-                        barStyle: BubbleBarStyle.horizotnal,
-                        bubbleFillStyle: BubbleFillStyle.fill,
-                        opacity: 0.3,
-                      ):AnimatedBarOptions(
-                        iconSize: 32,
+                      option: AnimatedBarOptions(
                         barAnimation: BarAnimation.liquid,
                         iconStyle: IconStyle.animated,
                         opacity: 0.3,
@@ -86,40 +74,40 @@ void _onTabTapped(int index) {
                       ),
                       items: [
                         BottomBarItem(
-                          icon:  Icon(Icons.dashboard_customize_outlined,size : isDesktop?32:22,),
-                          title:  Text('DASHBOARD',style: TextStyle(fontSize:isDesktop?destxt:mobtxt ),),
+                          icon:  Icon(Icons.dashboard_customize_outlined,size :iconsize),
+                          title:  Text('DASHBOARD',style: TextStyle(fontSize:textsiz ),),
                           backgroundColor: pricolor,
-                          selectedIcon:  Icon(Icons.dashboard_customize_outlined,size : isDesktop?32:22,),
+                          selectedIcon:  Icon(Icons.dashboard_customize_outlined,size : iconsize),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.shopping_cart_sharp,size : isDesktop?32:22,),
-                          title:  Text('PURCHASE',style: TextStyle(fontSize:isDesktop?destxt:mobtxt ),),
+                          icon:  Icon(Icons.shopping_cart_sharp,size :iconsize,),
+                          title:  Text('PURCHASE',style: TextStyle(fontSize:textsiz ),),
                           backgroundColor: pricolor,
-                         selectedIcon:Icon(Icons.shopping_cart_sharp,size : isDesktop?32:22,),
+                         selectedIcon:Icon(Icons.shopping_cart_sharp,size : iconsize,),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.store_sharp,size : isDesktop?32:22,),
-                          title:  Text('SALES',style: TextStyle(fontSize:isDesktop?destxt:mobtxt ),),
+                          icon:  Icon(Icons.store_sharp,size : iconsize,),
+                          title:  Text('SALES',style: TextStyle(fontSize:textsiz ),),
                           backgroundColor: pricolor,
-                          selectedIcon: Icon(Icons.store_sharp,size : isDesktop?32:22,),
+                          selectedIcon: Icon(Icons.store_sharp,size : iconsize,),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.fire_truck_sharp,size : isDesktop?32:22,),
-                          title:  Text('SHIPMENT',style: TextStyle(fontSize:isDesktop?destxt:mobtxt ),),
+                          icon:  Icon(Icons.fire_truck_sharp,size :iconsize,),
+                          title:  Text('SHIPMENT',style: TextStyle(fontSize:textsiz ),),
                           backgroundColor: pricolor,
-                          selectedIcon: Icon(Icons.fire_truck_sharp,size : isDesktop?32:22,),
+                          selectedIcon: Icon(Icons.fire_truck_sharp,size : iconsize,),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.attach_money_sharp,size : isDesktop?32:22,),
-                          title:  Text('CREDIT',style: TextStyle(fontSize:isDesktop?destxt:mobtxt ),),
+                          icon:  Icon(Icons.attach_money_sharp,size :iconsize),
+                          title:  Text('CREDIT',style: TextStyle(fontSize:textsiz ),),
                           backgroundColor: pricolor,
-                          selectedIcon:  Icon(Icons.attach_money_sharp,size : isDesktop?32:22,),
+                          selectedIcon:  Icon(Icons.attach_money_sharp,size : iconsize),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.query_stats,size : isDesktop?32:22,),
-                          title:  Text('ENQUIRY',style: TextStyle(fontSize:isDesktop?destxt:mobtxt ),),
+                          icon:  Icon(Icons.query_stats,size : iconsize),
+                          title:  Text('ENQUIRY',style: TextStyle(fontSize:textsiz ),),
                           backgroundColor: pricolor,
-                          selectedIcon:  Icon(Icons.query_stats,size : isDesktop?32:22,),
+                          selectedIcon:  Icon(Icons.query_stats,size :iconsize,),
                         ),
                       ],
                       hasNotch: true,
