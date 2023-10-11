@@ -32,9 +32,14 @@ List<WidgetBuilder> onpages=[
     (context)=> ship_page(),
     (context)=> Credit_page(),
     (context)=> enquiry_page(),
-    
-
+  
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +48,7 @@ List<WidgetBuilder> onpages=[
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: pribackcolor,
+        // backgroundColor: pribackcolor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -52,34 +57,57 @@ List<WidgetBuilder> onpages=[
                 child: Padding(
                   padding: const EdgeInsets.only(top: 70,left: 40),
                   child: Container(
-                    width: 177,
+                    height: 25,
+                    width: 250,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: pricolor,
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.white,
+                      boxShadow: [boxshadow]
                     ),
                     child: Row(
                       children: [
+                      
                         Expanded(
-                          child: Text(
-                            "  $formattedDate  & ",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
+                          child: Center(
+                            child: Row(
+                              
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                 Text(
+                                  "Chennai",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              
+                                Text(
+                                  "$formattedDate",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        DigitalClock(
-                          showSeconds: true,
-                          isLive: true,
-                          textScaleFactor: 0.69,
-                          digitalClockTextColor: Colors.white,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                        Center(
+                          child: DigitalClock(
+                            showSeconds: true,
+                            isLive: true,
+                            textScaleFactor: 0.69,
+                            digitalClockTextColor: Colors.black,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                            ),
+                            datetime: DateTime.now(),
                           ),
-                          datetime: DateTime.now(),
                         ),
+                        
                       ],
                     ),
                   ),
@@ -88,8 +116,8 @@ List<WidgetBuilder> onpages=[
               SizedBox(height: 20),
                // Add spacing between top container and menu items
               Container(
-                height: height,
-                width: width,
+                height: height*0.9,
+                width: width*0.9,
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, // Set cross-axis count to 2
@@ -105,15 +133,17 @@ List<WidgetBuilder> onpages=[
                         child: Container(
                           width: 20,
                           height: 20,
-                          decoration: BoxDecoration(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
-                            color: pricolor,
+                                          color: Colors.white,
+                            boxShadow: [boxshadow]
+                            // color: pricolor,
                           ),
                           child: Center(
                             child: Text(
                               mainMenu[index],
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
                               ),

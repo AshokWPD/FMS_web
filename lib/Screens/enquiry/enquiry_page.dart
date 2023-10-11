@@ -16,7 +16,7 @@ class _enquiry_pageState extends State<enquiry_page> {
       home: Scaffold(
                 backgroundColor: pribackcolor,
 
-body: Center(child: Text("ENQUIRY")),
+body: Center(child: Text("$placeName")),
       ),
     );
   }

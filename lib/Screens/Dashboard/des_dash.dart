@@ -26,16 +26,20 @@ final List<String> mainMenu=[
   "Enquiry History"
 ];
 
+
 List<WidgetBuilder> onpages=[
     (context)=> purchese_page(),
     (context)=> sales_page(),
     (context)=> ship_page(),
     (context)=> Credit_page(),
     (context)=> enquiry_page(),
-    
-
   ];
 
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,7 @@ List<WidgetBuilder> onpages=[
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: pribackcolor,
+        // backgroundColor: pribackcolor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -53,34 +57,57 @@ List<WidgetBuilder> onpages=[
                 child: Padding(
                   padding: const EdgeInsets.only(top: 70,left: 50),
                   child: Container(
-                    width: 177,
+                    height: 25,
+                    width: 250,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: pricolor,
+                      boxShadow: [boxshadow],
+                      color: Colors.white,
                     ),
                     child: Row(
                       children: [
+                        
                         Expanded(
-                          child: Text(
-                            "  $formattedDate  & ",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
+                          child: Center(
+                            child: Row(
+                              
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                 Text(
+                                  "Chennai",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              
+                                Text(
+                                  "$formattedDate",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        DigitalClock(
-                          showSeconds: true,
-                          isLive: true,
-                          textScaleFactor: 0.69,
-                          digitalClockTextColor: Colors.white,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                        Center(
+                          child: DigitalClock(
+                            showSeconds: true,
+                            isLive: true,
+                            textScaleFactor: 0.69,
+                            digitalClockTextColor: Colors.black,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                            ),
+                            datetime: DateTime.now(),
                           ),
-                          datetime: DateTime.now(),
                         ),
+                        
                       ],
                     ),
                   ),
@@ -91,7 +118,7 @@ List<WidgetBuilder> onpages=[
               Center(
                 child: Container(
                      height: height*0.8,
-                  width: width*0.6,
+                  width: width*0.65,
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3, // Set cross-axis count to 2
@@ -109,13 +136,15 @@ List<WidgetBuilder> onpages=[
                             height: 20,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
-                              color: pricolor,
+                                color: Colors.white,
+
+                            boxShadow: [boxshadow]
                             ),
                             child: Center(
                               child: Text(
                                 mainMenu[index],
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 13,
                                   fontWeight: FontWeight.bold,
                                 ),

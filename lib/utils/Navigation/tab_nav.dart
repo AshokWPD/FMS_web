@@ -41,9 +41,10 @@ void _onTabTapped(int index) {
   Widget build(BuildContext context) {
     // bool isDesktop = MediaQuery.of(context).size.width > 600;
      final height = MediaQuery.of(context).size.height;
-    // final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     // print("width :  $width");
-    double iconsize=15;
+    double iconsize=21;
+    var iconcolor=Colors.black;
     double textsiz=9;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -55,80 +56,86 @@ void _onTabTapped(int index) {
             Align(
            alignment: Alignment.topCenter,
            
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: 15),
-                child: ClipRRect(
-                      borderRadius: BorderRadius.all(
-                    Radius.circular(16.0),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                  color: Colors.white, // Customize the background color
-                      borderRadius: BorderRadius.circular(20)),
-                    height:40, 
-                    width:500,// Adjust the height of the navigation bar
-                    child: StylishBottomBar(
-                      option:BubbleBarOptions(
-                        iconSize: 20,
-                        barStyle: BubbleBarStyle.horizotnal,
-                        bubbleFillStyle: BubbleFillStyle.fill,
-                        opacity: 0.3,
-                      ),
-                      // AnimatedBarOptions(
-                      //   iconSize: 32,
-                      //   barAnimation: BarAnimation.liquid,
-                      //   iconStyle: IconStyle.animated,
-                      //   opacity: 0.3,
-                        
-                      // ),
-                      items: [
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [boxshadow],
+                  color: Colors.white
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        ),
+                      height:50, 
+                      width:width*0.5,// Adjust the height of the navigation bar
+                      child: StylishBottomBar(
+                        elevation: 0,
+                        // backgroundColor: pricolor,
+                        option:BubbleBarOptions(
+                          iconSize: 20,
+                          barStyle: BubbleBarStyle.vertical,
+                          bubbleFillStyle: BubbleFillStyle.fill,
+                          // opacity: 0.3,
+                          unselectedIconColor: Colors.black,
+                          inkColor: Colors.black,
+                        ),
+                        // AnimatedBarOptions(
+                        //   iconSize: 32,
+                        //   barAnimation: BarAnimation.liquid,
+                        //   iconStyle: IconStyle.animated,
+                        //   opacity: 0.3,
+                          
+                        // ),
+                       items: [
                         BottomBarItem(
-                          icon:  Icon(Icons.dashboard_customize_outlined,size :iconsize),
-                          title:  Text('DASHBOARD',style: TextStyle(fontSize:textsiz ),),
+                          icon:  Icon(Icons.dashboard_customize_outlined,size :iconsize,color:iconcolor),
+                          title:  Text('DASHBOARD',style: TextStyle(fontSize:textsiz,color:iconcolor ),),
                           backgroundColor: pricolor,
-                          selectedIcon:  Icon(Icons.dashboard_customize_outlined,size : iconsize),
+                          selectedIcon:  Icon(Icons.dashboard_customize_outlined,size : iconsize,color:iconcolor),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.shopping_cart_sharp,size :iconsize,),
-                          title:  Text('PURCHASE',style: TextStyle(fontSize:textsiz ),),
+                          icon:  Icon(Icons.shopping_cart_sharp,size :iconsize,color:iconcolor),
+                          title:  Text('PURCHASE',style: TextStyle(fontSize:textsiz ,color:iconcolor),),
                           backgroundColor: pricolor,
-                         selectedIcon:Icon(Icons.shopping_cart_sharp,size : iconsize,),
+                         selectedIcon:Icon(Icons.shopping_cart_sharp,size : iconsize,color:iconcolor),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.store_sharp,size : iconsize,),
-                          title:  Text('SALES',style: TextStyle(fontSize:textsiz ),),
+                          icon:  Icon(Icons.store_sharp,size : iconsize,color:iconcolor),
+                          title:  Text('SALES',style: TextStyle(fontSize:textsiz ,color:iconcolor),),
                           backgroundColor: pricolor,
-                          selectedIcon: Icon(Icons.store_sharp,size : iconsize,),
+                          selectedIcon: Icon(Icons.store_sharp,size : iconsize,color:iconcolor),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.fire_truck_sharp,size :iconsize,),
-                          title:  Text('SHIPMENT',style: TextStyle(fontSize:textsiz ),),
+                          icon:  Icon(Icons.fire_truck_sharp,size :iconsize,color:iconcolor),
+                          title:  Text('SHIPMENT',style: TextStyle(fontSize:textsiz ,color:iconcolor),),
                           backgroundColor: pricolor,
-                          selectedIcon: Icon(Icons.fire_truck_sharp,size : iconsize,),
+                          selectedIcon: Icon(Icons.fire_truck_sharp,size : iconsize,color:iconcolor),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.attach_money_sharp,size :iconsize),
-                          title:  Text('CREDIT',style: TextStyle(fontSize:textsiz ),),
+                          icon:  Icon(Icons.attach_money_sharp,size :iconsize,color:iconcolor),
+                          title:  Text('CREDIT',style: TextStyle(fontSize:textsiz ,color:iconcolor),),
                           backgroundColor: pricolor,
-                          selectedIcon:  Icon(Icons.attach_money_sharp,size : iconsize),
+                          selectedIcon:  Icon(Icons.attach_money_sharp,size : iconsize,color:iconcolor),
                         ),
                         BottomBarItem(
-                          icon:  Icon(Icons.query_stats,size : iconsize),
-                          title:  Text('ENQUIRY',style: TextStyle(fontSize:textsiz ),),
+                          icon:  Icon(Icons.query_stats,size : iconsize,color:iconcolor),
+                          title:  Text('ENQUIRY',style: TextStyle(fontSize:textsiz ,color:iconcolor),),
                           backgroundColor: pricolor,
-                          selectedIcon:  Icon(Icons.query_stats,size :iconsize,),
+                          selectedIcon:  Icon(Icons.query_stats,size :iconsize,color:iconcolor),
                         ),
                       ],
-                      hasNotch: true,
-                      currentIndex: _selectedIndex,
-                      onTap: (index) {
-                        setState(() {
-                          _selectedIndex = index;
-                        });
-                      },
+                        hasNotch: true,
+                        currentIndex: _selectedIndex,
+                        onTap: (index) {
+                          setState(() {
+                            _selectedIndex = index;
+                          });
+                        },
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),

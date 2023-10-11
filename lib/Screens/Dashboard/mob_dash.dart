@@ -32,9 +32,25 @@ class _mob_dashState extends State<mob_dash> {
     (context)=> ship_page(),
     (context)=> Credit_page(),
     (context)=> enquiry_page(),
-    
-
   ];
+
+
+String? locationName;
+  void getlocation()async{
+    setState(() async {
+      locationName=(await fetchLocationData())!;
+      print("$locationName");
+    });
+
+  }
+
+@override
+  void initState() {
+    getlocation();
+    // TODO: implement initState
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,53 +59,81 @@ class _mob_dashState extends State<mob_dash> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: pribackcolor,
+        // backgroundColor: pribackcolor,
         body: SingleChildScrollView(
           child: Column(
             children: [
               Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 70,left: 40),
-                  child: Container(
-                    width: 177,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: pricolor,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "  $formattedDate  & ",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
+                  padding: const EdgeInsets.only(top: 20,left: 20),
+                  child: Card(
+                    elevation: 3,
+
+                    child: Container(
+                      height: 25,
+                      width: 250,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [boxshadow]
+                        // color: pricolor,
+                      ),
+                      child: Row(
+                        children: [
+                          
+                          Expanded(
+                            child: Center(
+                              child: Row(
+                                
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                   Text(
+                                    "$locationName",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                
+                                  Text(
+                                    "$formattedDate",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        DigitalClock(
-                          showSeconds: true,
-                          isLive: true,
-                          textScaleFactor: 0.69,
-                          digitalClockTextColor: Colors.white,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          Center(
+                            child: DigitalClock(
+                              showSeconds: true,
+                              isLive: true,
+                              textScaleFactor: 0.69,
+                              digitalClockTextColor: Colors.black,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                              ),
+                              datetime: DateTime.now(),
+                            ),
                           ),
-                          datetime: DateTime.now(),
-                        ),
-                      ],
+                          
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
                // Add spacing between top container and menu items
               Container(
-                height: height,
-                width: width,
+                height: height*0.9,
+                width: width*0.9,
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, // Set cross-axis count to 2
@@ -107,13 +151,17 @@ class _mob_dashState extends State<mob_dash> {
                           height: 20,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
-                            color: pricolor,
+                             color: Colors.white,
+
+                            boxShadow: [boxshadow]
+
+                            // color: pricolor,
                           ),
                           child: Center(
                             child: Text(
                               mainMenu[index],
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,
                               ),
