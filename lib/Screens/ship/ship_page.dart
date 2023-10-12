@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fms_web/Screens/ship/des_ship.dart';
+import 'package:fms_web/Screens/ship/tab_ship.dart';
 import 'package:fms_web/constants/primary.dart';
+import 'package:fms_web/constants/responsive-page.dart';
+import 'package:fms_web/utils/Navigation/mob_nav.dart';
 
 class ship_page extends StatefulWidget {
   const ship_page({super.key});
@@ -11,13 +15,6 @@ class ship_page extends StatefulWidget {
 class _ship_pageState extends State<ship_page> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-                backgroundColor: pribackcolor,
-
-body: Center(child: Text("SHIP")),
-      ),
-    );
+    return Responsive(mobile: mob_Nav(), tablet: tab_ship(), desktop: des_ship(pageNo: 1,));
   }
 }

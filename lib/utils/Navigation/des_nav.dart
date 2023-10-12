@@ -49,13 +49,10 @@ void _onTabTapped(int index) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-    
-        body: Stack(
+        body: Column(
           children: [
-            _pages[_selectedIndex], // Your main content
             Align(
            alignment: Alignment.topCenter,
-           
               child: Container(
                 width: width,
                 height: 50,
@@ -134,10 +131,14 @@ void _onTabTapped(int index) {
                         },
                       ),
                     ),
+                    
                   ],
                 ),
               ),
             ),
+        
+                Expanded(child: _pages[_selectedIndex])
+        
           ],
         ),
       ),

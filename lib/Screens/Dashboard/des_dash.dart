@@ -28,11 +28,11 @@ final List<String> mainMenu=[
 
 
 List<WidgetBuilder> onpages=[
-    (context)=> purchese_page(),
-    (context)=> sales_page(),
-    (context)=> ship_page(),
-    (context)=> Credit_page(),
-    (context)=> enquiry_page(),
+    (context)=> const purchese_page(),
+    (context)=> const sales_page(),
+    (context)=> const ship_page(),
+    (context)=> const Credit_page(),
+    (context)=> const enquiry_page(),
   ];
 
 @override
@@ -57,10 +57,10 @@ List<WidgetBuilder> onpages=[
                 child: Padding(
                   padding: const EdgeInsets.only(top: 70,left: 50),
                   child: Container(
-                    height: 25,
+                    height: 35,
                     width: 250,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                       boxShadow: [boxshadow],
                       color: Colors.white,
                     ),
@@ -73,7 +73,7 @@ List<WidgetBuilder> onpages=[
                               
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                 Text(
+                                 const Text(
                                   "Chennai",
                                   style: TextStyle(
                                     color: Colors.black,
@@ -83,8 +83,8 @@ List<WidgetBuilder> onpages=[
                                 ),
                               
                                 Text(
-                                  "$formattedDate",
-                                  style: TextStyle(
+                                  formattedDate,
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
@@ -113,19 +113,19 @@ List<WidgetBuilder> onpages=[
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
                // Add spacing between top container and menu items
               Center(
-                child: Container(
+                child: SizedBox(
                      height: height*0.8,
                   width: width*0.65,
                   child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3, // Set cross-axis count to 2
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: EdgeInsets.all(65), // Adjust spacing around items
+                        padding: const EdgeInsets.all(65), // Adjust spacing around items
                         child: InkWell(
                           onTap: () {
                      Navigator.push(context,MaterialPageRoute(builder: onpages[index]) );
@@ -143,7 +143,7 @@ List<WidgetBuilder> onpages=[
                             child: Center(
                               child: Text(
                                 mainMenu[index],
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
                                   fontWeight: FontWeight.bold,

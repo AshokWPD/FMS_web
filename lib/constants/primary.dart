@@ -1,14 +1,16 @@
 
 import 'dart:convert';
 
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:group_radio_button/group_radio_button.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:location/location.dart';
   import 'package:http/http.dart'as http;
   
-var pribackcolor = Color.fromARGB(255, 234, 195, 249);
+var pribackcolor = const Color.fromARGB(255, 234, 195, 249);
 
-var pricolor=Color.fromARGB(255, 186, 1, 243);
+var pricolor=Colors.grey;
  
 var textfont=16;
 
@@ -91,8 +93,13 @@ class myDrawer extends StatelessWidget {
   final String titleone;
   final String titletwo;
   final String titlethree;
+  final String Drawerimage;
+  final pageone;
+    final  pagetwo;
 
-  const myDrawer({Key? key, required this.titleone, required this.titletwo, required this.titlethree}) : super(key: key);
+
+
+  const myDrawer({Key? key, required this.titleone, required this.titletwo, required this.titlethree, required this.Drawerimage, required this.pageone, required this.pagetwo}) : super(key: key);
 
 
 
@@ -100,50 +107,55 @@ class myDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
-      elevation: 0,
+      backgroundColor: Colors.grey[200],
+      elevation: 1,
       child: Column(
         children: [
-          // const SizedBox(
-          //   height: 18,
-          // ),
-          // Image.asset("assets/logo/logo_apk.png",scale: 3,),
+          const SizedBox(
+            height: 18,
+          ),
+          Image.asset(Drawerimage,scale: 4,),
+          const SizedBox(
+            height: 5,
+          ),
+          Center(child: Text(titleone,style: const TextStyle(color: Colors.black,fontSize: 20),)),
           const SizedBox(
             height: 19,
           ),
-          Padding(
-            padding: tilePadding,
-            child: ListTile(
-              leading: const Icon(Icons.cabin_outlined),
-              title: Text(
-                '$titleone',
-                style: drawerTextColor,
-              ),
-              onTap: (){
-                // Navigator.push(context, MaterialPageRoute(builder:(context)=>const dashboard_page()));
-              }
-            ),
-          ),
+
+          // Padding(
+          //   padding: tilePadding,
+          //   child: ListTile(
+          //     leading: const Icon(Icons.cabin_outlined),
+          //     title: Text(
+          //       '$titleone',
+          //       style: drawerTextColor,
+          //     ),
+          //     onTap: (){
+          //       // Navigator.push(context, MaterialPageRoute(builder:(context)=>const dashboard_page()));
+          //     }
+          //   ),
+          // ),
           
           Padding(
             padding: tilePadding,
             child: ListTile(
-              leading: const Icon(Icons.dashboard_customize_outlined),
+              leading: const Icon(Icons.receipt_sharp),
               title: Text(
-                '$titletwo',
+                titletwo,
                 style: drawerTextColor,
               ),
               onTap: (){
-                // Navigator.push(context, MaterialPageRoute(builder:(context) => const main_screen(),));
+                Navigator.push(context, MaterialPageRoute(builder:(context) =>pageone));
               }
             ),
           ),
           Padding(
             padding: tilePadding,
             child: ListTile(
-              leading: const Icon(Icons.person_outline_rounded),
+              leading: const Icon(Icons.history_sharp),
               title: Text(
-                '$titlethree',
+                titlethree,
                 style: drawerTextColor,
               ),
               onTap: (){
@@ -196,3 +208,252 @@ class myDrawer extends StatelessWidget {
     );
   }
 }
+
+
+/////////////////////// Text Form Field////////////////////////////////////
+
+
+class StyledTextFormField extends StatelessWidget {
+
+final String labletxt;
+double fieldwidth;
+   StyledTextFormField({super.key, required this.labletxt,required this.fieldwidth});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: fieldwidth,
+      padding: const EdgeInsets.all(16.0),
+     
+      child: TextFormField(
+        style: const TextStyle(
+          color: Colors.blue, // Text color
+          fontSize: 16.0, // Text size
+        ),
+        decoration: InputDecoration(
+          labelText: labletxt, // Replace with your custom label text
+          labelStyle: const TextStyle(
+            color: Colors.blue, // Label text color
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0), // Border radius
+            borderSide: const BorderSide(
+              color: Colors.blue, // Border color
+              width: 2.0, // Border width
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: Colors.blue, // Focused border color
+              width: 2.0, // Focused border width
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: Colors.red, // Error border color
+              width: 2.0, // Error border width
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: Colors.red, // Focused error border color
+              width: 2.0, // Focused error border width
+            ),
+          ),
+        ),
+      ),
+    );
+  }}
+
+
+
+
+
+
+  //////////////////////Drop Down menu/////////////////
+  class mydropDown extends StatelessWidget {
+    final  TextEditingController txtcontroller;
+    final List<String> dropitem;
+    final String hinttxt;
+  const mydropDown({super.key, required this.txtcontroller, required this.dropitem, required this.hinttxt});
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    return  Container(
+            width: width*0.26,
+            height: 50,
+            // padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        border: Border.all(
+          // width: 2,
+          color: Colors.grey
+        ),
+        color: Colors.white,
+        // boxShadow: [boxshadow],
+        borderRadius: BorderRadius.circular(10)
+      ),
+      child: Center(
+        child: CustomDropdown.search(
+          hintText: '$hinttxt',
+          hintStyle:TextStyle(color:Colors.blue,),
+          items: dropitem,
+          controller: txtcontroller,
+        ),
+      ),
+    );
+  }
+}
+ 
+
+ ///////////////////////  Radio Button /////////////////////
+ 
+
+
+
+  class my_radio extends StatefulWidget {
+double radiowidth;
+    final List<String> radiolist;
+    String selctvalue;
+   my_radio({super.key, required this.radiolist, required this.selctvalue,required this.radiowidth});
+
+  @override
+  State<my_radio> createState() => _my_radioState();
+}
+
+class _my_radioState extends State<my_radio> {
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    return  Container(
+      width: widget.radiowidth,
+      height: 50,
+      child:RadioGroup<String>.builder(
+        direction: Axis.horizontal,
+        groupValue:widget.selctvalue,
+        horizontalAlignment: MainAxisAlignment.spaceAround,
+        onChanged: (value) => setState(() {
+         widget.selctvalue = value ?? '';
+        }),
+        items: widget.radiolist,
+        textStyle: const TextStyle(
+          fontSize: 15,
+          color: Colors.blue,
+        ),
+        itemBuilder: (item) => RadioButtonBuilder(
+          item,
+        ),
+      ),
+        );
+  }
+}
+
+/////////////////////vertical radio///////////////////////////
+
+
+  class my_vertical_radio extends StatefulWidget {
+double radiowidth;
+    final List<String> radiolist;
+    String selctvalue;
+   my_vertical_radio({super.key, required this.radiolist, required this.selctvalue,required this.radiowidth});
+
+  @override
+  State<my_vertical_radio> createState() => my_vertical_radioState();
+}
+
+class my_vertical_radioState extends State<my_vertical_radio> {
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+        var height = MediaQuery.of(context).size.height;
+
+    return  Container(
+      width: widget.radiowidth,
+      child:RadioGroup<String>.builder(
+        direction: Axis.vertical,
+        groupValue:widget.selctvalue,
+        horizontalAlignment: MainAxisAlignment.spaceAround,
+        onChanged: (value) => setState(() {
+         widget.selctvalue = value ?? '';
+        }),
+        items: widget.radiolist,
+        textStyle: const TextStyle(
+          fontSize: 15,
+          color: Colors.blue,
+        ),
+        itemBuilder: (item) => RadioButtonBuilder(
+          item,
+        ),
+      ),
+        );
+  }
+}
+
+
+
+
+
+
+
+// class MyRadioButtons extends StatefulWidget {
+//   final String
+//   @override
+//   _MyRadioButtonsState createState() => _MyRadioButtonsState();
+// }
+
+// class _MyRadioButtonsState extends State<MyRadioButtons> {
+//   String? selectedpay; // Change the type to nullable String
+
+//   void handleRadioValueChange(String? value) { // Change the type to nullable String
+//     setState(() {
+//       selectedpay = value;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//         var width = MediaQuery.of(context).size.width;
+
+//     return  Container(
+//       width: width*0.26,
+//       child: Column(
+//           children: <Widget>[
+//             RadioListTile(
+//               title: Text('Cash'),
+//               value: 'Cash',
+//               groupValue: selectedpay,
+//               onChanged: handleRadioValueChange,
+//             ),
+//             RadioListTile(
+//               title: Text('Card'),
+//               value: 'Card',
+//               groupValue: selectedpay,
+//               onChanged: handleRadioValueChange,
+//             ),
+//             RadioListTile(
+//               title: Text('UPI'),
+//               value: 'UPI',
+//               groupValue: selectedpay,
+//               onChanged: handleRadioValueChange,
+//             ),
+//             RadioListTile(
+//               title: Text('Credit'),
+//               value: 'Credit',
+//               groupValue: selectedpay,
+//               onChanged: handleRadioValueChange,
+//             ),
+//             Padding(
+//               padding: EdgeInsets.all(16.0),
+//               child: Text('Selected Language: $selectedpay'),
+//             ),
+//           ],
+//         ),
+//     );
+    
+//   }
+// }

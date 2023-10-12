@@ -18,6 +18,6 @@ class _purchese_pageState extends State<purchese_page> {
     return Responsive(
       mobile: mob_perchase(),
        tablet: tab_perhace(),
-        desktop: des_perchase());
+        desktop: des_perchase(pageNo: 1,));
   }
 }
