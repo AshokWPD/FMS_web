@@ -1,37 +1,24 @@
 // import 'package:flutter/material.dart';
 // import 'package:fms_web/constants/primary.dart';
 
-// class mob_order extends StatefulWidget {
-//   const mob_order({super.key});
+// class tab_request extends StatefulWidget {
+//   const tab_request({super.key});
 
 //   @override
-//   State<mob_order> createState() => _mob_orderState();
+//   State<tab_request> createState() => _tab_requestState();
 // }
 
-// class _mob_orderState extends State<mob_order> {
-// TextEditingController meterialchoose =TextEditingController();
-//     String selectedFrequency="Frequency"; // Change the type to nullable String
+// class _tab_requestState extends State<tab_request> {
 
+//         String selectedcredit="credit"; 
 
-//   List<String> meterialType =[
-//   "60mm",
-//   "40mm",
-//   "20mm",
-//   "12mm",
-//   "6mm",
-//   "Dust",
-//   "M -Sand",
-//   "P -Sand"
+//   List<String> credittype =[
+//   "Weekly" ,
+//   "Monthly",
+//    "Quarterly",
+//     "Half-yearly"
 // ];
 
-// List<String> Frequencytype =[
-//  "One time",
-// "Weekly",
-// "Monthly",
-// "Quarterly",
-// "Half-yearly",
-// "Annually"
-// ];
  
 //   @override
 //   Widget build(BuildContext context) {
@@ -50,12 +37,14 @@
 //                     child: Column(
 //                       mainAxisAlignment: MainAxisAlignment.center,
 //                       children: [
-//                        StyledTextFormField(labletxt: "Contract Number", fieldwidth: width*0.28,),
+//                        StyledTextFormField(labletxt: "Ticket Number", fieldwidth: width*0.28,),
+//                         StyledTextFormField(labletxt: "Invoice Number", fieldwidth: width*0.28,),
+//                         StyledTextFormField(labletxt: "Credit Number", fieldwidth: width*0.28,),
 //                         StyledTextFormField(labletxt: "Company Name", fieldwidth: width*0.28,),
-//                         StyledTextFormField(labletxt: "Contact person", fieldwidth: width*0.28,),
+//                         StyledTextFormField(labletxt: "Contact Person Name", fieldwidth: width*0.28,),
 //                         StyledTextFormField(labletxt: "Contact Number", fieldwidth: width*0.28,),
-//                            mydropDown(txtcontroller: meterialchoose, dropitem: meterialType, hinttxt: "Type of Material", dropwidth: 0.9,),
-                      
+//                         StyledTextFormField(labletxt: "Vehicle Number", fieldwidth: width*0.28,),
+
 //                         // ElevatedButton(onPressed: (){}, child: Text("Save For Later"))
         
 //                       ],
@@ -65,12 +54,13 @@
 //                     child: Column(
 //                       mainAxisAlignment: MainAxisAlignment.center,
 //                       children: [
+//                         StyledTextFormField(labletxt: "Type of Material", fieldwidth: width*0.28,),
 //                         StyledTextFormField(labletxt: "Quantity", fieldwidth: width*0.28,),
-//                         StyledTextFormField(labletxt: "Start Date", fieldwidth: width*0.28,),
-//                         StyledTextFormField(labletxt: "End Date", fieldwidth: width*0.28,),
-//                         my_vertical_radio(radiolist: Frequencytype, selctvalue: selectedFrequency, radiowidth: width*0.25)
-                      
-//                         // ElevatedButton(onPressed: (){}, child: Text("Submit"))
+//                         StyledTextFormField(labletxt: "Price", fieldwidth: width*0.28,),
+//                         StyledTextFormField(labletxt: "Amount", fieldwidth: width*0.28,),
+//                         StyledTextFormField(labletxt: "Amount Paid", fieldwidth: width*0.28,),
+//                         StyledTextFormField(labletxt: "Amount Outstanding", fieldwidth: width*0.28,),
+//                         my_radio(radiolist: credittype, selctvalue: selectedcredit, radiowidth: width*0.28,),
                         
         
 //                       ],

@@ -27,17 +27,22 @@ final List<String> mainMenu=[
 ];
 
 List<WidgetBuilder> onpages=[
-    (context)=> purchese_page(),
-    (context)=> sales_page(),
+    (context)=> purchese_page(pageNo: 1,),
+    (context)=> sales_page(pageNo: 1,),
     (context)=> ship_page(),
-    (context)=> Credit_page(),
-    (context)=> enquiry_page(),
+    (context)=> Credit_page(pageNo: 1,),
+    (context)=> enquiry_page(pageNo: 1,),
   
   ];
 
-  @override
+ @override
   void initState() {
-    // TODO: implement initState
+LocationFetch.fetchLocationData(context).then((result) {
+      if (result != null) {
+      } else {
+        // Handle the case where the result is null
+      }
+    });    // TODO: implement initState
     super.initState();
   }
 
@@ -74,7 +79,7 @@ List<WidgetBuilder> onpages=[
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                  Text(
-                                  "Chennai",
+                                  "$placeName",
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,

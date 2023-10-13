@@ -18,6 +18,20 @@ class _perchese_voucherState extends State<perchese_voucher> {
   //     selectedpay = value;
   //   });
   // }
+TextEditingController _sellerCompanyName =TextEditingController();
+TextEditingController _sellerCompanyPhone =TextEditingController();
+TextEditingController _sellerCompanyAddress =TextEditingController();
+TextEditingController _sellerGST =TextEditingController();
+TextEditingController _voucherDate =TextEditingController();
+TextEditingController _voucherNumber =TextEditingController();
+TextEditingController _particulars =TextEditingController();
+TextEditingController _amount =TextEditingController();
+TextEditingController _AuthPerson =TextEditingController();
+TextEditingController _RPContactNumber =TextEditingController();
+
+
+
+
 
 TextEditingController companychoose =TextEditingController();
 TextEditingController personchoose =TextEditingController();
@@ -48,12 +62,45 @@ List<String> payment =[
 
   @override
   Widget build(BuildContext context) {
-        var width = MediaQuery.of(context).size.width;
-    return MaterialApp(
+     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    bool isDesktop = MediaQuery.of(context).size.width >= 1100;
+    bool istablet = MediaQuery.of(context).size.width >= 800;
+    bool ismobile = MediaQuery.of(context).size.width < 800;   
+     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SingleChildScrollView(
-          child: Container(
+          child:ismobile?Container(
+            width: width,
+            child: Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                 StyledTextFormField(labletxt: "Seller Company Name", fieldwidth: width*0.9, fieldcontroller: _sellerCompanyName,),
+                  StyledTextFormField(labletxt: "Seller Company Phone", fieldwidth: width*0.9, fieldcontroller: _sellerCompanyPhone,),
+                  StyledTextFormField(labletxt: "Seller Company Address", fieldwidth: width*0.9, fieldcontroller: _sellerCompanyAddress,),
+                  StyledTextFormField(labletxt: "Seller Company GST", fieldwidth: width*0.9, fieldcontroller: _sellerGST,),
+                  ElevatedButton(onPressed: (){}, child: Text("Save For Later")),
+                    SizedBox(height: 10,),
+                   mydropDown(txtcontroller: companychoose, dropitem: company, hinttxt: "Company", dropwidth: width*0.845,),
+                  StyledTextFormField(labletxt: "Voucher Date", fieldwidth: width*0.9, fieldcontroller: _voucherDate,),
+                  StyledTextFormField(labletxt: "Voucher Number", fieldwidth: width*0.9, fieldcontroller: _voucherNumber,),
+                  StyledTextFormField(labletxt: "Particulars / Description", fieldwidth: width*0.9, fieldcontroller: _particulars,),
+                  StyledTextFormField(labletxt: "Amount", fieldwidth: width*0.9, fieldcontroller: _amount,),
+                  my_radio(radiolist: payment, selctvalue: selectedpay, radiowidth: width*0.9),
+                  StyledTextFormField(labletxt: "Authorised Person", fieldwidth: width*0.9, fieldcontroller: _AuthPerson,),
+                   mydropDown(txtcontroller: personchoose, dropitem: buyperson, hinttxt: "Receiver Person", dropwidth:width*0.845,),
+                  StyledTextFormField(labletxt: "RP Contact Number", fieldwidth: width*0.9, fieldcontroller: _RPContactNumber,),
+                  ElevatedButton(onPressed: (){}, child: Text("Submit")),
+                  SizedBox(
+                    height: 80,
+                  )
+          
+                ],
+              ),
+            ),
+          ) :Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -64,10 +111,10 @@ List<String> payment =[
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                         StyledTextFormField(labletxt: "Seller Company Name", fieldwidth: width*0.28),
-                          StyledTextFormField(labletxt: "Seller Company Phone", fieldwidth: width*0.28),
-                          StyledTextFormField(labletxt: "Seller Company Address", fieldwidth: width*0.28),
-                          StyledTextFormField(labletxt: "Seller Company GST", fieldwidth: width*0.28),
+                         StyledTextFormField(labletxt: "Seller Company Name", fieldwidth: width*0.28, fieldcontroller: _sellerCompanyName,),
+                          StyledTextFormField(labletxt: "Seller Company Phone", fieldwidth: width*0.28, fieldcontroller: _sellerCompanyName,),
+                          StyledTextFormField(labletxt: "Seller Company Address", fieldwidth: width*0.28, fieldcontroller: _sellerCompanyAddress,),
+                          StyledTextFormField(labletxt: "Seller Company GST", fieldwidth: width*0.28, fieldcontroller: _sellerGST,),
                           ElevatedButton(onPressed: (){}, child: Text("Save For Later"))
           
                         ],
@@ -78,15 +125,15 @@ List<String> payment =[
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(height: 10,),
-                           mydropDown(txtcontroller: companychoose, dropitem: company, hinttxt: "Company"),
-                          StyledTextFormField(labletxt: "Voucher Date", fieldwidth: width*0.28),
-                          StyledTextFormField(labletxt: "Voucher Number", fieldwidth: width*0.28),
-                          StyledTextFormField(labletxt: "Particulars / Description", fieldwidth: width*0.28),
-                          StyledTextFormField(labletxt: "Amount", fieldwidth: width*0.28),
+                           mydropDown(txtcontroller: companychoose, dropitem: company, hinttxt: "Company", dropwidth: width*0.26,),
+                          StyledTextFormField(labletxt: "Voucher Date", fieldwidth: width*0.28, fieldcontroller: _voucherDate,),
+                          StyledTextFormField(labletxt: "Voucher Number", fieldwidth: width*0.28, fieldcontroller: _voucherNumber,),
+                          StyledTextFormField(labletxt: "Particulars / Description", fieldwidth: width*0.28, fieldcontroller: _particulars,),
+                          StyledTextFormField(labletxt: "Amount", fieldwidth: width*0.28, fieldcontroller: _amount,),
                           my_radio(radiolist: payment, selctvalue: selectedpay, radiowidth: width*0.28,),
-                          StyledTextFormField(labletxt: "Authorised Person", fieldwidth: width*0.28),
-                           mydropDown(txtcontroller: personchoose, dropitem: buyperson, hinttxt: "Receiver Person"),
-                          StyledTextFormField(labletxt: "RP Contact Number", fieldwidth: width*0.28),
+                          StyledTextFormField(labletxt: "Authorised Person", fieldwidth: width*0.28, fieldcontroller: _AuthPerson,),
+                           mydropDown(txtcontroller: personchoose, dropitem: buyperson, hinttxt: "Receiver Person", dropwidth: width*0.26,),
+                          StyledTextFormField(labletxt: "RP Contact Number", fieldwidth: width*0.28, fieldcontroller: _RPContactNumber,),
                           ElevatedButton(onPressed: (){}, child: Text("Submit"))
                           
           
@@ -102,31 +149,4 @@ List<String> payment =[
       ),
     );
   }
-
-  // Widget myradibutton() {
-  //       var width = MediaQuery.of(context).size.width;
-
-  //   return  Container(
-  //     width: width*0.28,
-  //     height: 50,
-  //     child:RadioGroup<String>.builder(
-  //       direction: Axis.horizontal,
-  //       groupValue: selectedpay,
-  //       horizontalAlignment: MainAxisAlignment.spaceAround,
-  //       onChanged: (value) => setState(() {
-  //         selectedpay = value ?? '';
-  //       }),
-  //       items: payment,
-  //       textStyle: const TextStyle(
-  //         fontSize: 15,
-  //         color: Colors.blue,
-  //       ),
-  //       itemBuilder: (item) => RadioButtonBuilder(
-  //         item,
-  //       ),
-  //     ),
-  //       );
-    
-    
-  // }
 }

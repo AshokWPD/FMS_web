@@ -3,6 +3,9 @@ import 'dart:convert';
 
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:fms_web/Screens/Dashboard/dashboard_page.dart';
+import 'package:fms_web/Screens/Dashboard/des_dash.dart';
+import 'package:fms_web/utils/Navigation/nav_bar.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:location/location.dart';
@@ -16,9 +19,9 @@ var textfont=16;
 
 var titlebold = 18;
 
-String? placeName;
+String placeName ="city";
 
-var boxshadow =BoxShadow(
+var boxshadow =      BoxShadow(
                     color: Colors.grey.withOpacity(0.5), // Shadow color
                     spreadRadius: 7, // Spread radius of the shadow
                     blurRadius: 7, // Blur radius of the shadow
@@ -28,57 +31,51 @@ var boxshadow =BoxShadow(
 var loadinganimat=LoadingAnimationWidget.newtonCradle(color: pricolor, size: 150);
 var mobloadinganimat=LoadingAnimationWidget.newtonCradle(color: pricolor, size: 85);
 
-Future<void> fetchAndPrintLocationData() async {
-  final location = Location();
-  try {
-    final LocationData locationData = await location.getLocation();
-    final double? latitude = locationData.latitude;
-    final double? longitude = locationData.longitude;
 
-    final response = await http.get(Uri.parse(
-        'http://api.openweathermap.org/geo/1.0/reverse?lat=$latitude&lon=$longitude&limit=1&appid=6f722ea220333c8a0ca6dc586510c3a5'));
 
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      if (data.isNotEmpty) {
-        final Map<String, dynamic> placeData = data[0];
-         placeName = placeData['name'];
-        print('Current Place Name: $placeName');
-        print("$latitude  $longitude");
-        
-      }
+class LocationFetch extends StatelessWidget {
+  const LocationFetch({Key? key}) : super(key: key);
+
+  static bool _hasNavigated = false;
+
+  static Future<String?> fetchLocationData(BuildContext context) async {
+    if (_hasNavigated) {
+      return null; // Already navigated, no need to do it again
     }
-  } catch (e) {
-    print('Error fetching location and data: $e');
+
+    final location = Location();
+    try {
+      final LocationData locationData = await location.getLocation();
+      final double? latitude = locationData.latitude;
+      final double? longitude = locationData.longitude;
+
+      final response = await http.get(Uri.parse('http://api.openweathermap.org/geo/1.0/reverse?lat=$latitude&lon=$longitude&limit=1&appid=6f722ea220333c8a0ca6dc586510c3a5'));
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        if (data.isNotEmpty) {
+          final Map<String, dynamic> placeData = data[0];
+           placeName = placeData['name'];
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Nav_bar()));
+          print('Current Place Name: $placeName');
+          print('$latitude  $longitude');
+          _hasNavigated = true; // Set the flag to true to prevent further navigation
+          return placeName; // Return the place name
+        }
+      }
+    } catch (e) {
+      print('Error fetching location and data: $e');
+    }
+
+    return null; // Return null if there's an error or no data found
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularProgressIndicator();
   }
 }
 
-Future<String?> fetchLocationData() async {
-  final location = Location();
-  try {
-    final LocationData locationData = await location.getLocation();
-    final double? latitude = locationData.latitude;
-    final double? longitude = locationData.longitude;
-
-    final response = await http.get(Uri.parse(
-        'http://api.opermap.org/geo/tude&lon=$longitude&limit=1&appid=6f722ea22'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      if (data.isNotEmpty) {
-        final Map<String, dynamic> placeData = data[0];
-        final String placeName = placeData['name'];
-        print('Current Place Name: $placeName');
-        print("$latitude  $longitude");
-        return placeName; // Return the place name
-      }
-    }
-  } catch (e) {
-    print('Error fetching location and data: $e');
-  }
-
-  return null; // Return null if there's an error or no data found
-}
 
 
 
@@ -214,10 +211,10 @@ class myDrawer extends StatelessWidget {
 
 
 class StyledTextFormField extends StatelessWidget {
-
+    final  TextEditingController fieldcontroller;
 final String labletxt;
 double fieldwidth;
-   StyledTextFormField({super.key, required this.labletxt,required this.fieldwidth});
+   StyledTextFormField({super.key, required this.labletxt,required this.fieldwidth, required this.fieldcontroller});
 
   @override
   Widget build(BuildContext context) {
@@ -226,9 +223,11 @@ double fieldwidth;
       padding: const EdgeInsets.all(16.0),
      
       child: TextFormField(
+        controller: fieldcontroller,
         style: const TextStyle(
           color: Colors.blue, // Text color
-          fontSize: 16.0, // Text size
+          fontSize: 16.0, 
+          // Text size
         ),
         decoration: InputDecoration(
           labelText: labletxt, // Replace with your custom label text
@@ -276,15 +275,16 @@ double fieldwidth;
   //////////////////////Drop Down menu/////////////////
   class mydropDown extends StatelessWidget {
     final  TextEditingController txtcontroller;
+    double dropwidth;
     final List<String> dropitem;
     final String hinttxt;
-  const mydropDown({super.key, required this.txtcontroller, required this.dropitem, required this.hinttxt});
+   mydropDown({super.key, required this.txtcontroller, required this.dropitem, required this.hinttxt,required this.dropwidth});
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return  Container(
-            width: width*0.26,
+            width: dropwidth,
             height: 50,
             // padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(

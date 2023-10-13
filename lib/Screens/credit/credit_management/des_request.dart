@@ -1,15 +1,14 @@
 // import 'package:flutter/material.dart';
 // import 'package:fms_web/constants/primary.dart';
 
-// class des_ticket extends StatefulWidget {
-//   const des_ticket({super.key});
+// class des_request extends StatefulWidget {
+//   const des_request({super.key});
 
 //   @override
-//   State<des_ticket> createState() => _des_ticketState();
+//   State<des_request> createState() => _des_requestState();
 // }
 
-// class _des_ticketState extends State<des_ticket> {
-
+// class _des_requestState extends State<des_request> {
 // TextEditingController _ticketNumber =TextEditingController();
 // TextEditingController _InvoiceNumber =TextEditingController();
 // TextEditingController _creditNumber =TextEditingController();
@@ -20,44 +19,27 @@
 // TextEditingController _quantity =TextEditingController();
 // TextEditingController _price =TextEditingController();
 // TextEditingController _amount =TextEditingController();
-// TextEditingController _startdate =TextEditingController();
-// TextEditingController _enddate =TextEditingController();
-// TextEditingController _deliveryName =TextEditingController();
-// TextEditingController _deliveryLocation =TextEditingController();
+// TextEditingController _amount_paid =TextEditingController();
+// TextEditingController _amountOutstatding =TextEditingController();
 
+//         String selectedcredit="credit"; 
 
-
-//   String selectedquentity="Quntity";
-//     String selectedpay="pay"; 
-//         String selecteddelivery="delivery"; 
-
-    
-// List<String> QuantityList =[
-//   "Unit",
-//   "Ton",
+//   List<String> credittype =[
+//   "Weekly" ,
+//   "Monthly",
+//    "Quarterly",
+//     "Half-yearly"
 // ];
 
-// List<String> payment =[
-//   "Cash",
-//   "card",
-//   "UPI",
-//   "Credit",
-// ];
-
-// List<String> deliveytype =[
-//   "By Self",
-//   "By Company",
-  
-// ];
-
+ 
 //   @override
 //   Widget build(BuildContext context) {
-// final height = MediaQuery.of(context).size.height;
+//  final height = MediaQuery.of(context).size.height;
 //     final width = MediaQuery.of(context).size.width;
 //     bool isDesktop = MediaQuery.of(context).size.width >= 1100;
 //     bool istablet = MediaQuery.of(context).size.width >= 800;
 //     bool ismobile = MediaQuery.of(context).size.width < 800; 
-//               return MaterialApp(
+//            return MaterialApp(
 //       debugShowCheckedModeBanner: false,
 //       home: Scaffold(
 //         body:ismobile?Container(
@@ -66,33 +48,21 @@
 //               child: Column(
 //                 mainAxisAlignment: MainAxisAlignment.center,
 //                 children: [
-//                         StyledTextFormField(labletxt: "Ticket Number", fieldwidth: width*0.28, fieldcontroller: _ticketNumber,),
+//                          StyledTextFormField(labletxt: "Ticket Number", fieldwidth: width*0.28, fieldcontroller: _ticketNumber,),
+//                         StyledTextFormField(labletxt: "Invoice Number", fieldwidth: width*0.28, fieldcontroller: _InvoiceNumber,),
+//                         StyledTextFormField(labletxt: "Credit Number", fieldwidth: width*0.28, fieldcontroller: _creditNumber,),
 //                         StyledTextFormField(labletxt: "Company Name", fieldwidth: width*0.28, fieldcontroller: _companyName,),
 //                         StyledTextFormField(labletxt: "Contact Person Name", fieldwidth: width*0.28, fieldcontroller: _contactPerson,),
 //                         StyledTextFormField(labletxt: "Contact Number", fieldwidth: width*0.28, fieldcontroller: _contactNumber,),
 //                         StyledTextFormField(labletxt: "Vehicle Number", fieldwidth: width*0.28, fieldcontroller: _vehileNumber,),
-//                         StyledTextFormField(labletxt: "Type of Material", fieldwidth: width*0.28, fieldcontroller: _InvoiceNumber,),
-//                         Row( mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [StyledTextFormField(labletxt: "Quantity", fieldwidth: width*0.18, fieldcontroller: _InvoiceNumber,),
-//                         my_radio(radiolist: QuantityList, selctvalue: selectedquentity, radiowidth:width* 0.1,),
-//                           ],
-//                         ),
+//                         StyledTextFormField(labletxt: "Type of Material", fieldwidth: width*0.28, fieldcontroller: _ticketNumber,),
+//                         StyledTextFormField(labletxt: "Quantity", fieldwidth: width*0.28, fieldcontroller: _quantity,),
 //                         StyledTextFormField(labletxt: "Price", fieldwidth: width*0.28, fieldcontroller: _price,),
 //                         StyledTextFormField(labletxt: "Amount", fieldwidth: width*0.28, fieldcontroller: _amount,),
-//                         my_radio(radiolist: payment, selctvalue: selectedpay, radiowidth: width*0.28,),
-//                         StyledTextFormField(labletxt: "Start Date & Time", fieldwidth: width*0.28, fieldcontroller: _startdate,),
-//                         StyledTextFormField(labletxt: "End Date & Time", fieldwidth: width*0.28, fieldcontroller: _enddate,),
-//                         Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             StyledTextFormField(labletxt: "Delivery Type", fieldwidth: width*0.15, fieldcontroller: _deliveryName,),
-//                            my_radio(radiolist: deliveytype, selctvalue: selecteddelivery, radiowidth:width* 0.13,),
-
-//                           ],
-//                         ),
-//                         StyledTextFormField(labletxt: "Delivery Location", fieldwidth: width*0.28, fieldcontroller: _deliveryLocation,),
-//               ElevatedButton(onPressed: (){}, child: const Text("Submit")),
-                        
+//                         StyledTextFormField(labletxt: "Amount Paid", fieldwidth: width*0.28, fieldcontroller: _amount_paid,),
+//                         StyledTextFormField(labletxt: "Amount Outstanding", fieldwidth: width*0.28, fieldcontroller: _amountOutstatding,),
+//                         my_radio(radiolist: credittype, selctvalue: selectedcredit, radiowidth: width*0.28,),
+//                         ElevatedButton(onPressed: (){}, child: const Text("Submit")),
 //                   SizedBox(
 //                     height: 80,
 //                   )
@@ -112,16 +82,13 @@
 //                       mainAxisAlignment: MainAxisAlignment.center,
 //                       children: [
 //                        StyledTextFormField(labletxt: "Ticket Number", fieldwidth: width*0.28, fieldcontroller: _ticketNumber,),
+//                         StyledTextFormField(labletxt: "Invoice Number", fieldwidth: width*0.28, fieldcontroller: _InvoiceNumber,),
+//                         StyledTextFormField(labletxt: "Credit Number", fieldwidth: width*0.28, fieldcontroller: _creditNumber,),
 //                         StyledTextFormField(labletxt: "Company Name", fieldwidth: width*0.28, fieldcontroller: _companyName,),
 //                         StyledTextFormField(labletxt: "Contact Person Name", fieldwidth: width*0.28, fieldcontroller: _contactPerson,),
 //                         StyledTextFormField(labletxt: "Contact Number", fieldwidth: width*0.28, fieldcontroller: _contactNumber,),
 //                         StyledTextFormField(labletxt: "Vehicle Number", fieldwidth: width*0.28, fieldcontroller: _vehileNumber,),
-//                         StyledTextFormField(labletxt: "Type of Material", fieldwidth: width*0.28, fieldcontroller: _InvoiceNumber,),
-//                         Row( mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [StyledTextFormField(labletxt: "Quantity", fieldwidth: width*0.18, fieldcontroller: _InvoiceNumber,),
-//                         my_radio(radiolist: QuantityList, selctvalue: selectedquentity, radiowidth:width* 0.1,),
-//                           ],
-//                         ),
+
 //                         // ElevatedButton(onPressed: (){}, child: Text("Save For Later"))
         
 //                       ],
@@ -131,21 +98,13 @@
 //                     child: Column(
 //                       mainAxisAlignment: MainAxisAlignment.center,
 //                       children: [
+//                         StyledTextFormField(labletxt: "Type of Material", fieldwidth: width*0.28, fieldcontroller: _ticketNumber,),
+//                         StyledTextFormField(labletxt: "Quantity", fieldwidth: width*0.28, fieldcontroller: _quantity,),
 //                         StyledTextFormField(labletxt: "Price", fieldwidth: width*0.28, fieldcontroller: _price,),
 //                         StyledTextFormField(labletxt: "Amount", fieldwidth: width*0.28, fieldcontroller: _amount,),
-//                         my_radio(radiolist: payment, selctvalue: selectedpay, radiowidth: width*0.28,),
-//                         StyledTextFormField(labletxt: "Start Date & Time", fieldwidth: width*0.28, fieldcontroller: _startdate,),
-//                         StyledTextFormField(labletxt: "End Date & Time", fieldwidth: width*0.28, fieldcontroller: _enddate,),
-//                         Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             StyledTextFormField(labletxt: "Delivery Type", fieldwidth: width*0.15, fieldcontroller: _deliveryName,),
-//                            my_radio(radiolist: deliveytype, selctvalue: selecteddelivery, radiowidth:width* 0.13,),
-
-//                           ],
-//                         ),
-//                         StyledTextFormField(labletxt: "Delivery Location", fieldwidth: width*0.28, fieldcontroller: _deliveryLocation,),
-//                         // ElevatedButton(onPressed: (){}, child: Text("Submit"))
+//                         StyledTextFormField(labletxt: "Amount Paid", fieldwidth: width*0.28, fieldcontroller: _amount_paid,),
+//                         StyledTextFormField(labletxt: "Amount Outstanding", fieldwidth: width*0.28, fieldcontroller: _amountOutstatding,),
+//                         my_radio(radiolist: credittype, selctvalue: selectedcredit, radiowidth: width*0.28,),
                         
         
 //                       ],

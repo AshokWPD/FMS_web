@@ -27,27 +27,25 @@ class _mob_dashState extends State<mob_dash> {
   ];
 
   List<WidgetBuilder> onpages=[
-    (context)=> purchese_page(),
-    (context)=> sales_page(),
+    (context)=> purchese_page(pageNo: 1,),
+    (context)=> sales_page(pageNo: 1,),
     (context)=> ship_page(),
-    (context)=> Credit_page(),
-    (context)=> enquiry_page(),
+    (context)=> Credit_page(pageNo: 1,),
+    (context)=> enquiry_page(pageNo: 1,),
   ];
 
 
 String? locationName;
-  void getlocation()async{
-    setState(() async {
-      locationName=(await fetchLocationData())!;
-      print("$locationName");
-    });
 
-  }
 
 @override
   void initState() {
-    getlocation();
-    // TODO: implement initState
+LocationFetch.fetchLocationData(context).then((result) {
+      if (result != null) {
+      } else {
+        // Handle the case where the result is null
+      }
+    });    // TODO: implement initState
     super.initState();
   }
 
@@ -89,7 +87,7 @@ String? locationName;
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                    Text(
-                                    "$locationName",
+                                    "$placeName",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,

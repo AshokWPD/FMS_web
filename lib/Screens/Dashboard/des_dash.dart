@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fms_web/Screens/Dashboard/dashboard_page.dart';
 import 'package:fms_web/Screens/credit/credit_page.dart';
 import 'package:fms_web/Screens/enquiry/enquiry_page.dart';
 import 'package:fms_web/Screens/purchese/purchese_page.dart';
@@ -9,7 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:one_clock/one_clock.dart';
 
 class des_dash extends StatefulWidget {
-  const des_dash({super.key});
+  const des_dash({super.key,});
 
   @override
   State<des_dash> createState() => _des_dashState();
@@ -28,16 +29,21 @@ final List<String> mainMenu=[
 
 
 List<WidgetBuilder> onpages=[
-    (context)=> const purchese_page(),
-    (context)=> const sales_page(),
+    (context)=> const purchese_page(pageNo: 1,),
+    (context)=> const sales_page(pageNo: 1,),
     (context)=> const ship_page(),
-    (context)=> const Credit_page(),
-    (context)=> const enquiry_page(),
+    (context)=> const Credit_page(pageNo: 1,),
+    (context)=> const enquiry_page(pageNo: 1,),
   ];
 
 @override
   void initState() {
-    // TODO: implement initState
+LocationFetch.fetchLocationData(context).then((result) {
+      if (result != null) {
+      } else {
+        // Handle the case where the result is null
+      }
+    });    // TODO: implement initState
     super.initState();
   }
 
@@ -58,7 +64,7 @@ List<WidgetBuilder> onpages=[
                   padding: const EdgeInsets.only(top: 70,left: 50),
                   child: Container(
                     height: 35,
-                    width: 250,
+                    width: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [boxshadow],
@@ -66,15 +72,13 @@ List<WidgetBuilder> onpages=[
                     ),
                     child: Row(
                       children: [
-                        
                         Expanded(
                           child: Center(
                             child: Row(
-                              
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                 const Text(
-                                  "Chennai",
+                                  Text(
+                                  "$placeName",
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -145,7 +149,7 @@ List<WidgetBuilder> onpages=[
                                 mainMenu[index],
                                 style: const TextStyle(
                                   color: Colors.black,
-                                  fontSize: 13,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
