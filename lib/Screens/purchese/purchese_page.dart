@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fms_web/Screens/purchese/des_perchase.dart';
-import 'package:fms_web/Screens/purchese/mob_perchase.dart';
 import 'package:fms_web/Screens/purchese/purchase_Management/voucher_input.dart';
-import 'package:fms_web/Screens/purchese/tab.perchase.dart';
 import 'package:fms_web/constants/primary.dart';
 import 'package:fms_web/constants/responsive-page.dart';
 
@@ -16,10 +13,10 @@ class purchese_page extends StatefulWidget {
 
 class _purchese_pageState extends State<purchese_page> {
 
-   List<Widget> _pages = [
-  perchese_voucher(),
-  perchese_voucher(),
-  perchese_voucher()
+   final List<Widget> _pages = [
+  const perchese_voucher(),
+  const perchese_voucher(),
+  const perchese_voucher()
   
   ];
 
@@ -30,17 +27,50 @@ class _purchese_pageState extends State<purchese_page> {
       final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     bool isDesktop = MediaQuery.of(context).size.width >= 1100;
-    bool istablet = MediaQuery.of(context).size.width >= 800;
-    bool ismobile = MediaQuery.of(context).size.width < 800;   
+    bool istablet = width>= 800 && width< 1100?true : false ;
+    bool ismobile = width < 800;  
+
     
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: ismobile?AppBar():null,
+        appBar: ismobile?AppBar(
+           iconTheme: const IconThemeData(
+            color: Colors.black
+          ),
+          backgroundColor: Colors.white,
+        ):null,
 
 body:ismobile?Container(
  child: _pages[widget.pageNo],
-): Container(
+): 
+istablet?
+Container(
+   width: width,
+            height: height,
+  color: Colors.green,
+  child: Row(
+    children: [
+      
+      Expanded(
+        flex: 2,
+        child: Container(
+          color: Colors.blue,
+          child:const myDrawer(
+          titleone: "P U R C H A S E", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/shopping-cart.png', pageone: purchese_page(pageNo: 2), pagetwo: null,),
+
+        )),
+      Expanded(
+        flex: 6,
+        child: Container(
+          child: _pages[widget.pageNo],
+          // color: Colors.pink,
+        ))
+    ],
+  ),
+):Container(
+   width: width,
+            height: height,
   color: Colors.green,
   child: Row(
     children: [
@@ -49,7 +79,7 @@ body:ismobile?Container(
         flex: 1,
         child: Container(
           color: Colors.blue,
-          child:myDrawer(
+          child:const myDrawer(
           titleone: "P U R C H A S E", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/shopping-cart.png', pageone: purchese_page(pageNo: 2), pagetwo: null,),
 
         )),
@@ -62,7 +92,7 @@ body:ismobile?Container(
     ],
   ),
 ),
-drawer: ismobile?myDrawer(
+drawer: ismobile?const myDrawer(
           titleone: "P U R C H A S E", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/shopping-cart.png', pageone: purchese_page(pageNo: 2), pagetwo: null,):null,
       ),
       

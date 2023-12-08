@@ -226,7 +226,7 @@ double fieldwidth;
         controller: fieldcontroller,
         style: const TextStyle(
           color: Colors.blue, // Text color
-          fontSize: 16.0, 
+          fontSize: 13.0, 
           // Text size
         ),
         decoration: InputDecoration(
@@ -299,7 +299,7 @@ double fieldwidth;
       child: Center(
         child: CustomDropdown.search(
           hintText: '$hinttxt',
-          hintStyle:TextStyle(color:Colors.blue,),
+          hintStyle:TextStyle(color:Colors.blue,fontSize: 13),
           items: dropitem,
           controller: txtcontroller,
         ),
@@ -328,7 +328,7 @@ class _my_radioState extends State<my_radio> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     return  Container(
       width: widget.radiowidth,
       height: 50,
@@ -341,7 +341,7 @@ class _my_radioState extends State<my_radio> {
         }),
         items: widget.radiolist,
         textStyle: const TextStyle(
-          fontSize: 15,
+          fontSize: 11,
           color: Colors.blue,
         ),
         itemBuilder: (item) => RadioButtonBuilder(
@@ -383,7 +383,7 @@ class my_vertical_radioState extends State<my_vertical_radio> {
         }),
         items: widget.radiolist,
         textStyle: const TextStyle(
-          fontSize: 15,
+          fontSize: 12,
           color: Colors.blue,
         ),
         itemBuilder: (item) => RadioButtonBuilder(

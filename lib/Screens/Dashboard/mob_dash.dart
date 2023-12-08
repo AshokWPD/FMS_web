@@ -26,16 +26,19 @@ class _mob_dashState extends State<mob_dash> {
     "Enquiry History"
   ];
 
+
+
   List<WidgetBuilder> onpages=[
-    (context)=> purchese_page(pageNo: 1,),
-    (context)=> sales_page(pageNo: 1,),
-    (context)=> ship_page(),
-    (context)=> Credit_page(pageNo: 1,),
-    (context)=> enquiry_page(pageNo: 1,),
+    (context)=> const purchese_page(pageNo: 1,),
+    (context)=> const sales_page(pageNo: 1,),
+    (context)=> const ship_page(),
+    (context)=> const Credit_page(pageNo: 1,),
+    (context)=> const enquiry_page(pageNo: 1,),
   ];
 
 
 String? locationName;
+
 
 
 @override
@@ -87,8 +90,8 @@ LocationFetch.fetchLocationData(context).then((result) {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                    Text(
-                                    "$placeName",
-                                    style: TextStyle(
+                                    placeName,
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13,
@@ -96,8 +99,8 @@ LocationFetch.fetchLocationData(context).then((result) {
                                   ),
                                 
                                   Text(
-                                    "$formattedDate",
-                                    style: TextStyle(
+                                    formattedDate,
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13,
@@ -127,26 +130,26 @@ LocationFetch.fetchLocationData(context).then((result) {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
                // Add spacing between top container and menu items
-              Container(
+              SizedBox(
                 height: height*0.9,
                 width: width*0.9,
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, // Set cross-axis count to 2
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: EdgeInsets.all(40), // Adjust spacing around items
+                      padding: const EdgeInsets.all(30), // Adjust spacing around items
                       child: InkWell(
                         onTap: () {
                      Navigator.push(context,MaterialPageRoute(builder: onpages[index]) );
 
                         },
                         child: Container(
-                          width: 20,
-                          height: 20,
+                          width: 25,
+                          height: 25,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
                              color: Colors.white,
@@ -160,7 +163,7 @@ LocationFetch.fetchLocationData(context).then((result) {
                               mainMenu[index],
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 13,
+                                fontSize: width*0.030,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
