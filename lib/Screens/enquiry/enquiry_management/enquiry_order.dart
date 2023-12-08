@@ -10,13 +10,13 @@ class enquiry_order extends StatefulWidget {
 
 class _enquiry_orderState extends State<enquiry_order> {
 
-TextEditingController _ContractNumber =TextEditingController();
-TextEditingController _companyName =TextEditingController();
-TextEditingController _contactPerson =TextEditingController();
-TextEditingController _contactNumber =TextEditingController();
-TextEditingController _quantity =TextEditingController();
-TextEditingController _startdate =TextEditingController();
-TextEditingController _enddate =TextEditingController();
+final TextEditingController _ContractNumber =TextEditingController();
+final TextEditingController _companyName =TextEditingController();
+final TextEditingController _contactPerson =TextEditingController();
+final TextEditingController _contactNumber =TextEditingController();
+final TextEditingController _quantity =TextEditingController();
+final TextEditingController _startdate =TextEditingController();
+final TextEditingController _enddate =TextEditingController();
 
 
 
@@ -51,15 +51,16 @@ List<String> Frequencytype =[
      final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     bool isDesktop = MediaQuery.of(context).size.width >= 1100;
-    bool istablet = MediaQuery.of(context).size.width >= 800;
+    bool istablet = width>= 800 && width< 1100?true : false ;
     bool ismobile = MediaQuery.of(context).size.width < 800; 
         return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body:SingleChildScrollView(
-          child: ismobile?Container(
+          child: ismobile?SizedBox(
               width: width,
-              child: Expanded(
+              // height: height,
+              child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -73,14 +74,14 @@ List<String> Frequencytype =[
                           StyledTextFormField(labletxt: "End Date", fieldwidth: width*0.9, fieldcontroller: _enddate,),
                           my_vertical_radio(radiolist: Frequencytype, selctvalue: selectedFrequency, radiowidth: width*0.845),
                 ElevatedButton(onPressed: (){}, child: const Text("Submit")),
-                    SizedBox(
-                      height: 80,
+                     SizedBox(
+                      height:height*0.09,
                     )
-            
+                        
                   ],
                 ),
               ),
-            ) : Container(
+            ) :istablet?  Container(
             child:  Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -95,7 +96,49 @@ List<String> Frequencytype =[
                           StyledTextFormField(labletxt: "Company Name", fieldwidth: width*0.28, fieldcontroller: _companyName,),
                           StyledTextFormField(labletxt: "Contact person", fieldwidth: width*0.28, fieldcontroller: _contactPerson,),
                           StyledTextFormField(labletxt: "Contact Number", fieldwidth: width*0.28, fieldcontroller: _contactNumber,),
-                          mydropDown(txtcontroller: meterialchoose, dropitem: meterialType, hinttxt: "Type of Material", dropwidth:width*0.9,),
+                          mydropDown(txtcontroller: meterialchoose, dropitem: meterialType, hinttxt: "Type of Material", dropwidth:width*0.25,),
+                        
+                          // ElevatedButton(onPressed: (){}, child: Text("Save For Later"))
+          
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          StyledTextFormField(labletxt: "Quantity", fieldwidth: width*0.28, fieldcontroller: _quantity,),
+                          StyledTextFormField(labletxt: "Start Date", fieldwidth: width*0.28, fieldcontroller: _startdate,),
+                          StyledTextFormField(labletxt: "End Date", fieldwidth: width*0.28, fieldcontroller: _enddate,),
+                          my_vertical_radio(radiolist: Frequencytype, selctvalue: selectedFrequency, radiowidth: width*0.25)
+                        
+                          // ElevatedButton(onPressed: (){}, child: Text("Submit"))
+                          
+          
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                ElevatedButton(onPressed: (){}, child: const Text("Submit"))
+              ],
+            ),
+          ):Container(
+            child:  Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                         StyledTextFormField(labletxt: "Contract Number", fieldwidth: width*0.28, fieldcontroller: _ContractNumber,),
+                          StyledTextFormField(labletxt: "Company Name", fieldwidth: width*0.28, fieldcontroller: _companyName,),
+                          StyledTextFormField(labletxt: "Contact person", fieldwidth: width*0.28, fieldcontroller: _contactPerson,),
+                          StyledTextFormField(labletxt: "Contact Number", fieldwidth: width*0.28, fieldcontroller: _contactNumber,),
+                          mydropDown(txtcontroller: meterialchoose, dropitem: meterialType, hinttxt: "Type of Material", dropwidth:width*0.26,),
                         
                           // ElevatedButton(onPressed: (){}, child: Text("Save For Later"))
           

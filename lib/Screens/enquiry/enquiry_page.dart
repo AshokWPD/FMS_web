@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fms_web/Screens/enquiry/des_enquiry.dart';
 import 'package:fms_web/Screens/enquiry/enquiry_management/enquiry_order.dart';
-import 'package:fms_web/Screens/enquiry/mob_enquiry.dart';
-import 'package:fms_web/Screens/enquiry/tab_enquiry.dart';
+
 import 'package:fms_web/constants/primary.dart';
 import 'package:fms_web/constants/responsive-page.dart';
 
@@ -28,16 +26,42 @@ class _enquiry_pageState extends State<enquiry_page> {
       final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     bool isDesktop = MediaQuery.of(context).size.width >= 1100;
-    bool istablet = MediaQuery.of(context).size.width >= 800;
+    bool istablet = width>= 800 && width< 1100?true : false ;
     bool ismobile = MediaQuery.of(context).size.width < 800;   
     
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: ismobile?AppBar():null,
+        appBar: ismobile?AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.black
+          ),
+          backgroundColor: Colors.white,
+        ):null,
 
 body:ismobile?Container(
  child: _pages[widget.pageNo],
+):
+istablet? Container(
+  color: Colors.green,
+  child: Row(
+    children: [
+      
+      Expanded(
+        flex: 2,
+        child: Container(
+          color: Colors.blue,
+          child:myDrawer(titleone: "E N Q U I R Y", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/enquiry.png', pageone: enquiry_page(pageNo: 1), pagetwo: null,),
+
+        )),
+      Expanded(
+        flex: 6,
+        child: Container(
+          child: _pages[widget.pageNo],
+          // color: Colors.pink,
+        ))
+    ],
+  ),
 ): Container(
   color: Colors.green,
   child: Row(
@@ -47,7 +71,7 @@ body:ismobile?Container(
         flex: 1,
         child: Container(
           color: Colors.blue,
-          child:myDrawer(titleone: "E N Q U I R Y", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/enquiry.png', pageone: 1, pagetwo: null,),
+          child:myDrawer(titleone: "E N Q U I R Y", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/enquiry.png', pageone: enquiry_page(pageNo: 1), pagetwo: null,),
 
         )),
       Expanded(
@@ -59,7 +83,7 @@ body:ismobile?Container(
     ],
   ),
 ),
-drawer: ismobile?myDrawer(titleone: "E N Q U I R Y", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/enquiry.png', pageone: 1, pagetwo: null,):null
+drawer: ismobile?myDrawer(titleone: "E N Q U I R Y", titletwo: "V O U C H E R", titlethree: "H I S T O R Y", Drawerimage: 'assets/images/enquiry.png', pageone: enquiry_page(pageNo: 1), pagetwo: null,):null
   ),
       
     );

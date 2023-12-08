@@ -41,7 +41,7 @@ void _onTabTapped(int index) {
      final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     bool isDesktop = MediaQuery.of(context).size.width >= 1100;
-    bool istablet = MediaQuery.of(context).size.width >= 800;
+    bool istablet = width>= 800 && width< 1100?true : false ;
     bool ismobile = MediaQuery.of(context).size.width < 800;
  double tabIconsize=21;
     double tabTextsiz=9;
